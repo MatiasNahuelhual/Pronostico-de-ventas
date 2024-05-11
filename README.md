@@ -5,3 +5,7 @@ En el ámbito de la logística y el comercio, la capacidad predictiva se erige c
 Este informe tiene como objetivo detallar el proceso de implementación del modelo SARIMAX para el pronóstico de ventas en el contexto específico descrito. Desde la preparación y análisis de los datos hasta la evaluación de los resultados obtenidos, se abordarán todas las etapas pertinentes con el fin de ofrecer recomendaciones prácticas y orientadas a la mejora continua.
 
 Con el compromiso de aportar soluciones profesionales y estratégicas, me sumerjo en el análisis y la implementación del modelo SARIMAX, con el firme propósito de contribuir al éxito operativo y comercial de la empresa de entrega de alimentos.
+
+## Dataset
+
+El conjunto de datos fue adquirido en https://www.kaggle.com/
