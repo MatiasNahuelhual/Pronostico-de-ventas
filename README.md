@@ -9,3 +9,7 @@ Con el compromiso de aportar soluciones profesionales y estratégicas, me sumerj
 ## Dataset
 
 El conjunto de datos fue adquirido en https://www.kaggle.com/
+
+## Aplicacion de datos
+
+Para que sea más fácil de entender para los usuarios que toman decisiones basadas en datos dentro de la empresa, vay a implementar el modelo en una aplicación web hecha con Streamlit
