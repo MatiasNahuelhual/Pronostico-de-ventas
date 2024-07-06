@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from pmdarima import auto_arima
 import streamlit as st
+import plotly.graph_objs as go
 
 @st.cache_data
 def load_data():
@@ -28,24 +29,54 @@ def make_forecast(modelo_auto, ventas_por_semana, num_semanas=10):
     return pronostico, pronostico_prox_semanas, confianza_inf, confianza_sup
 
 def plot_forecast(ventas_por_semana, pronostico, pronostico_prox_semanas, confianza_inf, confianza_sup):
-    import seaborn as sns
-    import matplotlib.pyplot as plt
-
-    plt.figure(figsize=(16, 9))
-    sns.set_style("darkgrid")
-    sns.set_context("talk")
-
     indice_prox_semanas = np.arange(len(ventas_por_semana), len(ventas_por_semana) + len(pronostico_prox_semanas))
+    
+    # Crear figura
+    fig = go.Figure()
 
-    sns.lineplot(x=ventas_por_semana['week'], y=ventas_por_semana['sum_num_orders'], label='Datos originales')
-    sns.lineplot(x=ventas_por_semana['week'], y=pronostico, color='red', label='Modelo ARIMA ajustado')
-    sns.lineplot(x=indice_prox_semanas, y=pronostico_prox_semanas, color='orange', label='Pronóstico próximas 10 semanas')
-    plt.fill_between(indice_prox_semanas, confianza_inf, confianza_sup, color='orange', alpha=.3, label='Intervalo de confianza')
+    # Agregar datos originales
+    fig.add_trace(go.Scatter(
+        x=ventas_por_semana['week'], 
+        y=ventas_por_semana['sum_num_orders'], 
+        mode='lines', 
+        name='Datos originales'
+    ))
 
-    plt.legend()
-    plt.title('Pronóstico de Pedidos para las Próximas 10 Semanas')
-    plt.xlabel('Semana')
-    plt.ylabel('Número de Pedidos')
-    plt.tight_layout()
+    # Agregar modelo ajustado
+    fig.add_trace(go.Scatter(
+        x=ventas_por_semana['week'], 
+        y=pronostico, 
+        mode='lines', 
+        name='Modelo ARIMA ajustado', 
+        line=dict(color='red')
+    ))
 
-    return plt
+    # Agregar pronóstico
+    fig.add_trace(go.Scatter(
+        x=indice_prox_semanas, 
+        y=pronostico_prox_semanas, 
+        mode='lines', 
+        name='Pronóstico próximas 10 semanas', 
+        line=dict(color='orange')
+    ))
+
+    # Agregar intervalo de confianza
+    fig.add_trace(go.Scatter(
+        x=np.concatenate([indice_prox_semanas, indice_prox_semanas[::-1]]),
+        y=np.concatenate([confianza_sup, confianza_inf[::-1]]),
+        fill='toself',
+        fillcolor='rgba(255, 165, 0, 0.2)',
+        line=dict(color='rgba(255, 165, 0, 0)'),
+        showlegend=False,
+        name='Intervalo de confianza'
+    ))
+
+    # Actualizar layout
+    fig.update_layout(
+        title='Pronóstico de Pedidos para las Próximas 10 Semanas',
+        xaxis_title='Semana',
+        yaxis_title='Número de Pedidos',
+        template='plotly_dark'
+    )
+
+    return fig

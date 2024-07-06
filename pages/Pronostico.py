@@ -23,5 +23,5 @@ pronostico, pronostico_prox_semanas, confianza_inf, confianza_sup = make_forecas
 # Mostrar gráfico
 st.write('### Pronóstico de Ventas')
 fig = plot_forecast(ventas_por_semana, pronostico, pronostico_prox_semanas, confianza_inf, confianza_sup)
-st.pyplot(fig)
+st.plotly_chart(fig)
 
