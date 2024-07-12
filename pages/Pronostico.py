@@ -1,5 +1,4 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 from sarimax_model import load_data, preprocess_data, train_model, make_forecast, plot_forecast
 
 st.title('Pronóstico de Ventas con SARIMAX')
