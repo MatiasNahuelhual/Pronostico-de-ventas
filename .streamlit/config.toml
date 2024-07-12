@@ -1,0 +1,7 @@
+[theme]
+base="dark"
+primaryColor="purple"
+backgroundColor="#fff0f3"
+secondaryBackgroundColor="black"
+textColor="black"
+font="serif"
