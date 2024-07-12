@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-test = pd.read_csv('C:/Users/matia/Repositorios/Pronostico-de-ventas/test.csv')
-train = pd.read_csv('C:/Users/matia/Repositorios/Pronostico-de-ventas/train.csv')
+test = pd.read_csv('test.csv')
+train = pd.read_csv('train.csv')
 
 # Agrupar los datos por semana y sumar las ventas
 ventas_por_semana = train.groupby('week')['num_orders'].sum().reset_index()

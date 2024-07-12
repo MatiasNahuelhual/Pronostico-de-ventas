@@ -6,8 +6,8 @@ import plotly.graph_objs as go
 
 @st.cache_data
 def load_data():
-    test = pd.read_csv('C:/Users/matia/Repositorios/Pronostico-de-ventas/test.csv')
-    train = pd.read_csv('C:/Users/matia/Repositorios/Pronostico-de-ventas/train.csv')
+    test = pd.read_csv('test.csv')
+    train = pd.read_csv('train.csv')
     return train, test
 
 def preprocess_data(train):
